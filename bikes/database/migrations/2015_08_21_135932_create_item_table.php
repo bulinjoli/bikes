@@ -13,7 +13,7 @@ class CreateItemTable extends Migration
     public function up()
     {
         Schema::create('item', function (Blueprint $table) {
-            $table->string('item_code')->unique();
+            $table->string('item_code')->primary();
             $table->string('invoice_id')->unsignedString();
             $table->foreign('invoice_id')->references('invoice_code')->on('invoice');
             $table->string('description');

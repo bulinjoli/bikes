@@ -13,7 +13,7 @@ class CreateInvoicesTable extends Migration
     public function up()
     {
         Schema::create('invoice', function (Blueprint $table) {
-            $table->string('invoice_code')->unique();
+            $table->string('invoice_code')->primary();
             $table->string('customer_number');
             $table->string('customer_name');
             $table->string('description');

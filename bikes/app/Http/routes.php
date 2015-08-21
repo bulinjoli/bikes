@@ -12,5 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+    $invoices = App\Invoice::all();
+    $items = App\Item::all();
+
+    return view("index", compact("items"), compact("invoices"));
 });
+
+//Route::get('/invoices', array("uses"=>"Project$index"));
+
