@@ -11,13 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    //return view('welcome');
-    $invoices = App\Invoice::all();
-    $items = App\Item::all();
-
-    return view("index", compact("items"), compact("invoices"));
+Route::get('/', function(){
+    return Redirect::to("/invoices");
 });
 
-//Route::get('/invoices', array("uses"=>"Project$index"));
+Route::resource('/invoices', "InvoiceController");
+
+Route::get('/invoices/items/create_item/{id}', "ItemController@create_item");
+
+Route::resource('/invoices/items', "ItemController");
+
 

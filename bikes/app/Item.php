@@ -6,25 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    public $timestamps = false;
-    protected $table = 'item';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    protected $table = 'item';
+    protected $primaryKey = "item_code";
+    public $timestamps = false;
+
+
     protected $fillable = ['description', 'gross', 'net', 'vat'];
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = ['item_code', "invoice_id"];
+
+    //protected $hidden = ['item_code', "invoice_id"];
+
+    public static $rules = [
+        "item_code" => "required",
+        "net" => "required",
+        "vat" => "required",
+        "gross" => "required"
+    ];
+    public function invoice(){
+        return $this->belongsTo("App\invoice");
+    }
 }

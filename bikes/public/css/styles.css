@@ -1,0 +1,61 @@
+body{
+
+}
+
+ul{
+    margin: 0px;
+}
+
+.invoice{
+    overflow: hidden;
+    display: block;
+    border: solid thin black;
+}
+a{
+    text-decoration: none;
+}
+li{
+    list-style-type: none;
+    float: left;
+    border: solid thin black;
+    padding: 5px;
+    height: 40px;
+}
+
+.error{
+    color: red;
+}
+
+.btn{
+    background-color: firebrick;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.item{
+    overflow: hidden;
+    float: left;
+    display: block;
+}
+
+.item li{
+    background-color: gray;
+}
+
+.buttons{
+    overflow: hidden;
+    float: right;
+    display:block;
+}
+.buttons li{
+    background-color: darkgray;
+    margin: 5px;
+}
+
+.button{
+    border:solid thick darkgray;
+    background-color: darkgray;
+    display:inline-block;
+    margin: 10px;
+}
