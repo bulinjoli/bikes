@@ -37,6 +37,7 @@ li{
     overflow: hidden;
     float: left;
     display: block;
+    width: 100%;
 }
 
 .item li{
