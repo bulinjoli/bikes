@@ -99,15 +99,28 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = Validator::make(Input::all(), Item::$rules);
+        $item = Item::find($id);
+
+        $rules = [
+            "net" => "required|numeric|min:0",
+            "vat" => "required|numeric|min:0",
+            "gross" => "required|numeric|min:0"
+        ];
+
+        if(Input::get("item_code")===$item->item_code){
+            $validator = Validator::make(Input::all(), $rules);
+        }else{
+            $validator = Validator::make(Input::all(), Item::$rules);
+        }
+
         if($validator->fails()){
             return Redirect::back()->withInput()->withErrors($validator->messages());
         }
 
-        $item = Item::find($id);
         if($item===null){
             return view("missing");
         }
+
 
         $invoice = Invoice::find($item->invoice_id);
         $invoice->total_vat = strval((int)$invoice->total_vat - (int)$item->vat + (int)Input::get("vat"));

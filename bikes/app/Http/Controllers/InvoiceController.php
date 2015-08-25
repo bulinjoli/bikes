@@ -98,11 +98,20 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = Validator::make(Input::all(), Invoice::$rules);
+        $invoice = Invoice::find($id);
+        $rules = [
+            "invoice_code" => "required",
+        ];
+
+        if(Input::get("invoice_code")===$invoice->invoice_code){
+            $validator = Validator::make(Input::all(), $rules);
+        }else{
+            $validator = Validator::make(Input::all(), Invoice::$rules);
+        }
         if($validator->fails()){
             return Redirect::back()->withInput()->withErrors($validator->messages());
         }
-        $invoice = Invoice::find($id);
+
         if($invoice===null){
             return view("missing");
         }
@@ -123,11 +132,11 @@ class InvoiceController extends Controller
     public function destroy($id)
     {
         $invoice = Invoice::find($id);
-        $invoice->delete();
-        $items = Item::where("invoice_id","=",$invoice->invoice_code)->get();
+        $items = Item::where("invoice_id","=",$invoice->id)->get();
         foreach($items as $item){
             $item->delete();
         }
+        $invoice->delete();
         return Redirect::route("invoices.index");
     }
 }

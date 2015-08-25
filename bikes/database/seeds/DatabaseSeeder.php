@@ -34,18 +34,18 @@ class InvoiceSeeder extends Seeder
                 'customer_number'=>"C123",
                 'customer_name'=>"Customer 1",
                 'description'=>"Bike and accessory",
-                'total_net'=>"430",
-                'total_gross'=>"500",
-                'total_vat'=>"70"
+                'total_net'=>"1100",
+                'total_gross'=>"1419",
+                'total_vat'=>"319"
             ),
             array(
                 'invoice_code'=>"A124",
                 'customer_number'=>"B123",
                 'customer_name'=>"Customer 2",
                 'description'=>"Bike",
-                'total_net'=>"750",
-                'total_gross'=>"999",
-                'total_vat'=>"249"
+                'total_net'=>"80",
+                'total_gross'=>"80",
+                'total_vat'=>"0"
             )
         );
 
