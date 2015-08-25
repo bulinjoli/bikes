@@ -84,6 +84,9 @@ class ItemController extends Controller
     public function edit($id)
     {
         $item = Item::find($id);
+        if($item===null){
+            return view("missing");
+        }
         return view("edit_item")->with("item", $item);
     }
 
@@ -102,6 +105,9 @@ class ItemController extends Controller
         }
 
         $item = Item::find($id);
+        if($item===null){
+            return view("missing");
+        }
 
         $invoice = Invoice::find($item->invoice_id);
         $invoice->total_vat = strval((int)$invoice->total_vat - (int)$item->vat + (int)Input::get("vat"));

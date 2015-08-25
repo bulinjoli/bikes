@@ -83,6 +83,9 @@ class InvoiceController extends Controller
     public function edit($id)
     {
         $invoice = Invoice::find($id);
+        if($invoice===null){
+            return view("missing");
+        }
         return view("edit_invoice")->with("invoice", $invoice);
     }
 
