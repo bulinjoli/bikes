@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
          $this->call(InvoiceSeeder::class);
+         $this->call(ItemSeeder::class);
 
         Model::reguard();
     }
@@ -26,7 +27,6 @@ class InvoiceSeeder extends Seeder
     public function run()
     {
         DB::table("invoice")->delete();
-        DB::table("item")->delete();
 
         $invoices = array(
             array(
@@ -49,10 +49,21 @@ class InvoiceSeeder extends Seeder
             )
         );
 
+        DB::table("invoice")->insert($invoices);
+    }
+}
+
+class ItemSeeder extends Seeder
+{
+
+    public function run()
+    {
+        DB::table("item")->delete();
+
         $items = array(
             array(
                 'item_code'=>"B1",
-                'invoice_id'=>$invoices[0]["invoice_code"],
+                'invoice_id'=>DB::table("invoice")->first()->id,
                 'description'=>"Bike",
                 'gross'=>"420",
                 'net'=>"350",
@@ -60,7 +71,7 @@ class InvoiceSeeder extends Seeder
             ),
             array(
                 'item_code'=>"B2",
-                'invoice_id'=>$invoices[0]["invoice_code"],
+                'invoice_id'=>DB::table("invoice")->first()->id,
                 'description'=>"Bike",
                 'gross'=>"999",
                 'net'=>"750",
@@ -68,15 +79,13 @@ class InvoiceSeeder extends Seeder
             ),
             array(
                 'item_code'=>"A1",
-                'invoice_id'=>$invoices[1]["invoice_code"],
+                'invoice_id'=>DB::table("invoice")->where('invoice_code', "A124")->first()->id,
                 'description'=>"Helmet",
                 'gross'=>"80",
                 'net'=>"80",
                 'vat'=>"0"
             )
         );
-
-        DB::table("invoice")->insert($invoices);
         DB::table("item")->insert($items);
     }
 }

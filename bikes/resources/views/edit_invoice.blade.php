@@ -4,7 +4,7 @@
 @section("content")
 
     <h1>Creating new invoice for {{$invoice->customer_name}}</h1>
-    {!! Form::open(array('method'=>'PATCH', "route"=>array("invoices.update", $invoice->invoice_code)))  !!}
+    {!! Form::open(array('method'=>'PATCH', "route"=>array("invoices.update", $invoice->id)))  !!}
 
     <div>
         {!! Form::label("invoice_code_label", "Invoice code: ") !!}

@@ -60,8 +60,6 @@ class InvoiceController extends Controller
         $invoice->total_vat = "0";
         $invoice->save();
         return Redirect::route("invoices.index");
-        //$invoices = Invoice::all();
-        //return view("index",compact("invoices"));
     }
 
     /**
@@ -84,7 +82,6 @@ class InvoiceController extends Controller
      */
     public function edit($id)
     {
-        //
         $invoice = Invoice::find($id);
         return view("edit_invoice")->with("invoice", $invoice);
     }
@@ -98,7 +95,10 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make(Input::all(), Invoice::$rules);
+        if($validator->fails()){
+            return Redirect::back()->withInput()->withErrors($validator->messages());
+        }
         $invoice = Invoice::find($id);
         $invoice->invoice_code = Input::get("invoice_code");
         $invoice->customer_name = Input::get("customer_name");
@@ -116,8 +116,6 @@ class InvoiceController extends Controller
      */
     public function destroy($id)
     {
-        //
-
         $invoice = Invoice::find($id);
         $invoice->delete();
         $items = Item::where("invoice_id","=",$invoice->invoice_code)->get();

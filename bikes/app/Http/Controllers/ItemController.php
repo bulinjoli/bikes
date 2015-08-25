@@ -96,6 +96,11 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validator = Validator::make(Input::all(), Item::$rules);
+        if($validator->fails()){
+            return Redirect::back()->withInput()->withErrors($validator->messages());
+        }
+
         $item = Item::find($id);
 
         $invoice = Invoice::find($item->invoice_id);

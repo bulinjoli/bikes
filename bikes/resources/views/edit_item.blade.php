@@ -4,7 +4,7 @@
 @section("content")
 
     <h1>Creating new item</h1>
-    {!! Form::open(array('method'=>'PATCH', "route"=>array("invoices.items.update", $item->item_code)))  !!}
+    {!! Form::open(array('method'=>'PATCH', "route"=>array("invoices.items.update", $item->id)))  !!}
 
     <div>
         {!! Form::label("item_code_label", "Item code: ") !!}

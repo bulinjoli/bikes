@@ -9,16 +9,16 @@ class Invoice extends Model
 {
 
     protected $table = 'invoice';
-    protected $primaryKey = 'invoice_code';
+    protected $primaryKey = 'id';
     public $timestamps = false;
     public $incrementing = false;
 
-    protected $fillable = ['customer_number', 'customer_name', 'description', 'total_net', 'total_gross', 'total_vat'];
+    protected $fillable = ['invoice_code', 'customer_number', 'customer_name', 'description', 'total_net', 'total_gross', 'total_vat'];
 
     //protected $hidden = ['invoice_code'];
 
     public static $rules = [
-        "invoice_code" => "required"
+        "invoice_code" => "required|unique:invoice,invoice_code",
     ];
 
     public function items(){

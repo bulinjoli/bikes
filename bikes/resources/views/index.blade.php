@@ -25,8 +25,8 @@
                             <li>Item gross: {{$item->gross}}</li>
                             <li>Item net: {{$item->net}}</li>
                             <li>Item vat: {{$item->vat}}</li>
-                            <li>{!! link_to("/invoices/items/{$item->item_code}/edit", "Edit item") !!}</li>
-                            <li>{!! Form::open(array('route' => array('invoices.items.destroy', $item->item_code), 'method' => 'delete')) !!}
+                            <li>{!! link_to("/invoices/items/{$item->id}/edit", "Edit item") !!}</li>
+                            <li>{!! Form::open(array('route' => array('invoices.items.destroy', $item->id), 'method' => 'delete')) !!}
                             <button type="submit" class="btn">Delete Item</button>
                             {!! Form::close() !!}
                             </li>
@@ -35,12 +35,12 @@
                     @endforeach
                 <div class="buttons">
                     <ul>
-                        <li>{!! link_to("/invoices/items/create_item/{$invoice->invoice_code}", "Add item") !!}</li>
-                        <li>{!! link_to("/invoices/{$invoice->invoice_code}/edit", "Edit invoice") !!}</li>
+                        <li>{!! link_to("/invoices/items/create_item/{$invoice->id}", "Add item") !!}</li>
+                        <li>{!! link_to("/invoices/{$invoice->id}/edit", "Edit invoice") !!}</li>
 
-                        <!-- <li>{!! link_to_route('invoices.destroy', 'Delete invoice', $invoice->invoice_code, ['data-method'=>'delete']) !!}</li>-->
+                        <!-- <li>{!! link_to_route('invoices.destroy', 'Delete invoice', $invoice->id, ['data-method'=>'delete']) !!}</li>-->
 
-                        {!! Form::open(array('route' => array('invoices.destroy', $invoice->invoice_code), 'method' => 'delete')) !!}
+                        {!! Form::open(array('route' => array('invoices.destroy', $invoice->id), 'method' => 'delete')) !!}
                             <button type="submit" class="btn">Delete Invoice</button>
                         {!! Form::close() !!}
 

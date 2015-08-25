@@ -31,7 +31,7 @@
         {!! $errors->first("vat","<span class = 'error'>:message</span") !!}
     </div>
     <div>
-        {!! Form::hidden("invoice_id",$invoice->invoice_code) !!}
+        {!! Form::hidden("invoice_id",$invoice->id) !!}
     </div>
     <div>
         {!! Form::submit("Create item") !!}
