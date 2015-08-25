@@ -100,6 +100,9 @@ class InvoiceController extends Controller
             return Redirect::back()->withInput()->withErrors($validator->messages());
         }
         $invoice = Invoice::find($id);
+        if($invoice===null){
+            return view("missing");
+        }
         $invoice->invoice_code = Input::get("invoice_code");
         $invoice->customer_name = Input::get("customer_name");
         $invoice->customer_number = Input::get("customer_number");
